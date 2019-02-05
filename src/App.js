@@ -8,14 +8,35 @@ class App extends Component {
     super(props)
     this.state = {
 
-      board : Array(9).fill("X")
-    
+      board : Array(9).fill(null),
+
     }
+  }
+
+  handleClick(index){
+    this.state.board[index] = "X"
+    
+    console.log(this.state.board)
+
+    // console.log(index)
   }
 
   render() {
       
-    const Box =this.state.board.map(box => <div className="box">{box}</div>)
+    const Box = this.state.board.map(
+      (box, index) =>
+      
+        <div className="box" 
+  
+          key={index} 
+  
+          onClick={() => this.handleClick(index)}>
+      
+          {box}
+      
+        </div>
+    
+    )
 
     return (
       <div className="container">
